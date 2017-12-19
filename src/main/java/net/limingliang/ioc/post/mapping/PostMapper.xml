@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.limingliang.ioc.post.dao.PostDao" >
+  <resultMap id="BaseResultMap" type="net.limingliang.ioc.post.dto.Post" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="post_author" property="postAuthor" jdbcType="BIGINT" />
+    <result column="post_date" property="postDate" jdbcType="TIMESTAMP" />
+    <result column="post_date_gmt" property="postDateGmt" jdbcType="TIMESTAMP" />
+    <result column="post_content" property="postContent" jdbcType="VARCHAR" />
+    <result column="post_title" property="postTitle" jdbcType="VARCHAR" />
+    <result column="post_excerpt" property="postExcerpt" jdbcType="VARCHAR" />
+    <result column="post_status" property="postStatus" jdbcType="VARCHAR" />
+    <result column="comment_status" property="commentStatus" jdbcType="VARCHAR" />
+    <result column="ping_status" property="pingStatus" jdbcType="VARCHAR" />
+    <result column="post_password" property="postPassword" jdbcType="VARCHAR" />
+    <result column="post_name" property="postName" jdbcType="VARCHAR" />
+    <result column="to_ping" property="toPing" jdbcType="VARCHAR" />
+    <result column="pinged" property="pinged" jdbcType="VARCHAR" />
+    <result column="post_modified" property="postModified" jdbcType="TIMESTAMP" />
+    <result column="post_modified_gmt" property="postModifiedGmt" jdbcType="TIMESTAMP" />
+    <result column="post_content_filtered" property="postContentFiltered" jdbcType="VARCHAR" />
+    <result column="post_parent" property="postParent" jdbcType="BIGINT" />
+    <result column="guid" property="guid" jdbcType="VARCHAR" />
+    <result column="menu_order" property="menuOrder" jdbcType="INTEGER" />
+    <result column="post_type" property="postType" jdbcType="VARCHAR" />
+    <result column="post_mime_type" property="postMimeType" jdbcType="VARCHAR" />
+    <result column="comment_count" property="commentCount" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, post_author, post_date, post_date_gmt, post_content, post_title, post_excerpt, 
+    post_status, comment_status, ping_status, post_password, post_name, to_ping, pinged, 
+    post_modified, post_modified_gmt, post_content_filtered, post_parent, guid, menu_order, 
+    post_type, post_mime_type, comment_count
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog_posts
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="net.limingliang.ioc.post.dto.Post" >
+    delete from blog_posts
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.limingliang.ioc.post.dto.Post" >
+    insert into blog_posts (ID, post_author, post_date, 
+      post_date_gmt, post_content, post_title, 
+      post_excerpt, post_status, comment_status, 
+      ping_status, post_password, post_name, 
+      to_ping, pinged, post_modified, 
+      post_modified_gmt, post_content_filtered, 
+      post_parent, guid, menu_order, 
+      post_type, post_mime_type, comment_count
+      )
+    values (#{id,jdbcType=BIGINT}, #{postAuthor,jdbcType=BIGINT}, #{postDate,jdbcType=TIMESTAMP}, 
+      #{postDateGmt,jdbcType=TIMESTAMP}, #{postContent,jdbcType=VARCHAR}, #{postTitle,jdbcType=VARCHAR}, 
+      #{postExcerpt,jdbcType=VARCHAR}, #{postStatus,jdbcType=VARCHAR}, #{commentStatus,jdbcType=VARCHAR}, 
+      #{pingStatus,jdbcType=VARCHAR}, #{postPassword,jdbcType=VARCHAR}, #{postName,jdbcType=VARCHAR}, 
+      #{toPing,jdbcType=VARCHAR}, #{pinged,jdbcType=VARCHAR}, #{postModified,jdbcType=TIMESTAMP}, 
+      #{postModifiedGmt,jdbcType=TIMESTAMP}, #{postContentFiltered,jdbcType=VARCHAR}, 
+      #{postParent,jdbcType=BIGINT}, #{guid,jdbcType=VARCHAR}, #{menuOrder,jdbcType=INTEGER}, 
+      #{postType,jdbcType=VARCHAR}, #{postMimeType,jdbcType=VARCHAR}, #{commentCount,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.limingliang.ioc.post.dto.Post" >
+    insert into blog_posts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="postAuthor != null" >
+        post_author,
+      </if>
+      <if test="postDate != null" >
+        post_date,
+      </if>
+      <if test="postDateGmt != null" >
+        post_date_gmt,
+      </if>
+      <if test="postContent != null" >
+        post_content,
+      </if>
+      <if test="postTitle != null" >
+        post_title,
+      </if>
+      <if test="postExcerpt != null" >
+        post_excerpt,
+      </if>
+      <if test="postStatus != null" >
+        post_status,
+      </if>
+      <if test="commentStatus != null" >
+        comment_status,
+      </if>
+      <if test="pingStatus != null" >
+        ping_status,
+      </if>
+      <if test="postPassword != null" >
+        post_password,
+      </if>
+      <if test="postName != null" >
+        post_name,
+      </if>
+      <if test="toPing != null" >
+        to_ping,
+      </if>
+      <if test="pinged != null" >
+        pinged,
+      </if>
+      <if test="postModified != null" >
+        post_modified,
+      </if>
+      <if test="postModifiedGmt != null" >
+        post_modified_gmt,
+      </if>
+      <if test="postContentFiltered != null" >
+        post_content_filtered,
+      </if>
+      <if test="postParent != null" >
+        post_parent,
+      </if>
+      <if test="guid != null" >
+        guid,
+      </if>
+      <if test="menuOrder != null" >
+        menu_order,
+      </if>
+      <if test="postType != null" >
+        post_type,
+      </if>
+      <if test="postMimeType != null" >
+        post_mime_type,
+      </if>
+      <if test="commentCount != null" >
+        comment_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="postAuthor != null" >
+        #{postAuthor,jdbcType=BIGINT},
+      </if>
+      <if test="postDate != null" >
+        #{postDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postDateGmt != null" >
+        #{postDateGmt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postContent != null" >
+        #{postContent,jdbcType=VARCHAR},
+      </if>
+      <if test="postTitle != null" >
+        #{postTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="postExcerpt != null" >
+        #{postExcerpt,jdbcType=VARCHAR},
+      </if>
+      <if test="postStatus != null" >
+        #{postStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="commentStatus != null" >
+        #{commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pingStatus != null" >
+        #{pingStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="postPassword != null" >
+        #{postPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="postName != null" >
+        #{postName,jdbcType=VARCHAR},
+      </if>
+      <if test="toPing != null" >
+        #{toPing,jdbcType=VARCHAR},
+      </if>
+      <if test="pinged != null" >
+        #{pinged,jdbcType=VARCHAR},
+      </if>
+      <if test="postModified != null" >
+        #{postModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postModifiedGmt != null" >
+        #{postModifiedGmt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postContentFiltered != null" >
+        #{postContentFiltered,jdbcType=VARCHAR},
+      </if>
+      <if test="postParent != null" >
+        #{postParent,jdbcType=BIGINT},
+      </if>
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuOrder != null" >
+        #{menuOrder,jdbcType=INTEGER},
+      </if>
+      <if test="postType != null" >
+        #{postType,jdbcType=VARCHAR},
+      </if>
+      <if test="postMimeType != null" >
+        #{postMimeType,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCount != null" >
+        #{commentCount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.limingliang.ioc.post.dto.Post" >
+    update blog_posts
+    <set >
+      <if test="postAuthor != null" >
+        post_author = #{postAuthor,jdbcType=BIGINT},
+      </if>
+      <if test="postDate != null" >
+        post_date = #{postDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postDateGmt != null" >
+        post_date_gmt = #{postDateGmt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postContent != null" >
+        post_content = #{postContent,jdbcType=VARCHAR},
+      </if>
+      <if test="postTitle != null" >
+        post_title = #{postTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="postExcerpt != null" >
+        post_excerpt = #{postExcerpt,jdbcType=VARCHAR},
+      </if>
+      <if test="postStatus != null" >
+        post_status = #{postStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="commentStatus != null" >
+        comment_status = #{commentStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pingStatus != null" >
+        ping_status = #{pingStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="postPassword != null" >
+        post_password = #{postPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="postName != null" >
+        post_name = #{postName,jdbcType=VARCHAR},
+      </if>
+      <if test="toPing != null" >
+        to_ping = #{toPing,jdbcType=VARCHAR},
+      </if>
+      <if test="pinged != null" >
+        pinged = #{pinged,jdbcType=VARCHAR},
+      </if>
+      <if test="postModified != null" >
+        post_modified = #{postModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postModifiedGmt != null" >
+        post_modified_gmt = #{postModifiedGmt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postContentFiltered != null" >
+        post_content_filtered = #{postContentFiltered,jdbcType=VARCHAR},
+      </if>
+      <if test="postParent != null" >
+        post_parent = #{postParent,jdbcType=BIGINT},
+      </if>
+      <if test="guid != null" >
+        guid = #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuOrder != null" >
+        menu_order = #{menuOrder,jdbcType=INTEGER},
+      </if>
+      <if test="postType != null" >
+        post_type = #{postType,jdbcType=VARCHAR},
+      </if>
+      <if test="postMimeType != null" >
+        post_mime_type = #{postMimeType,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCount != null" >
+        comment_count = #{commentCount,jdbcType=BIGINT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.limingliang.ioc.post.dto.Post" >
+    update blog_posts
+    set post_author = #{postAuthor,jdbcType=BIGINT},
+      post_date = #{postDate,jdbcType=TIMESTAMP},
+      post_date_gmt = #{postDateGmt,jdbcType=TIMESTAMP},
+      post_content = #{postContent,jdbcType=VARCHAR},
+      post_title = #{postTitle,jdbcType=VARCHAR},
+      post_excerpt = #{postExcerpt,jdbcType=VARCHAR},
+      post_status = #{postStatus,jdbcType=VARCHAR},
+      comment_status = #{commentStatus,jdbcType=VARCHAR},
+      ping_status = #{pingStatus,jdbcType=VARCHAR},
+      post_password = #{postPassword,jdbcType=VARCHAR},
+      post_name = #{postName,jdbcType=VARCHAR},
+      to_ping = #{toPing,jdbcType=VARCHAR},
+      pinged = #{pinged,jdbcType=VARCHAR},
+      post_modified = #{postModified,jdbcType=TIMESTAMP},
+      post_modified_gmt = #{postModifiedGmt,jdbcType=TIMESTAMP},
+      post_content_filtered = #{postContentFiltered,jdbcType=VARCHAR},
+      post_parent = #{postParent,jdbcType=BIGINT},
+      guid = #{guid,jdbcType=VARCHAR},
+      menu_order = #{menuOrder,jdbcType=INTEGER},
+      post_type = #{postType,jdbcType=VARCHAR},
+      post_mime_type = #{postMimeType,jdbcType=VARCHAR},
+      comment_count = #{commentCount,jdbcType=BIGINT}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 分页查询 -->
+  <select id="getPostByPage" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from blog_posts 
+  	where 
+  	1=1
+  	<if test="search != null" >
+  		and post_title like "%"#{search,jdbcType=VARCHAR}"%"
+    </if>
+    and post_type ='post' and (post_status = 'publish' OR post_status = 'private') ORDER BY post_date DESC 
+    limit #{startPos}, #{pageSize}
+  </select>
+  <!-- 取得记录的总数 -->  
+  <select id="getPostCount" resultType="long">
+  		select count(*) from blog_posts where 1=1
+  	<if test="search !=null">
+  		and post_title like "%"#{search,jdbcType=VARCHAR}"%"
+  	</if>
+  	and post_type ='post' and (post_status = 'publish' OR post_status = 'private')
+  </select>
+  <select id="getPostByName" resultMap="BaseResultMap">
+  		SELECT 
+  	<include refid="Base_Column_List" />
+ 		FROM blog_posts WHERE 1=1
+  	<if test="date !=null">
+  		AND  post_date  like  "%"#{date,jdbcType=VARCHAR}"%"
+  	</if>
+  	<if test="name !=null">
+  		AND post_name = #{name}
+  	</if>
+  		AND post_type = 'post'
+  </select>
+</mapper>

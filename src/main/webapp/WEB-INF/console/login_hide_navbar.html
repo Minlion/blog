@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>登录</title>
+
+	<link href="console/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+	<!-- 图标 -->
+	<link href="console/icons/icons.css" rel="stylesheet" type="text/css">
+	<link href="console/css/bootstrap-3.0.3.min.css" rel="stylesheet" type="text/css">
+	
+	
+	 <!-- Ladda style -->
+    <link href="console/css/plugins/ladda/ladda-themeless.min.css" rel="stylesheet">
+    
+    
+	<link href="console/css/login.css" rel="stylesheet" type="text/css">
+	
+
+	<!-- Core JS files -->
+	<script type="text/javascript" src="console/js/jquery-2.1.1.js"></script>
+	<script type="text/javascript" src="console/js/bootstrap.min.js"></script>
+	<!-- /core JS files -->
+	<script src="console/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="console/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="console/js/inspinia.js"></script>
+    <script src="console/js/plugins/pace/pace.min.js"></script>
+
+    <!-- Ladda -->
+    <script src="console/js/plugins/ladda/spin.min.js"></script>
+    <script src="console/js/plugins/ladda/ladda.min.js"></script>
+    <script src="console/js/plugins/ladda/ladda.jquery.min.js"></script>
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="console/js/login.js"></script>
+	<!-- /theme JS files -->
+	
+</head>
+
+<body>
+
+	<!-- Page container -->
+	<div class="page-container login-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Advanced login -->
+<!-- 					<form action="login" method="post" onsubmit="return remem();"> -->
+					<form id="login" method="post" action="login">
+						<div class="panel panel-body login-form">
+						
+							<div class="text-center">
+								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+							</div>
+							
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="text" class="form-control" required="required"  placeholder="用户名/邮箱" name="userEmail" title="您可以使用用户名或者邮箱来登录">
+								<div class="form-control-feedback">
+									<i class="icon-user text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group has-feedback has-feedback-left">
+								<input type="password" class="form-control" required="required"  placeholder="密码" name="userPass" title="请输入您的密码">
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+								</div>
+							</div>
+
+							<div class="form-group login-options">
+								<div class="row">
+									<div class="col-sm-6">
+										<label class="checkbox-inline" title="选择此选择，可以保留您登录时的信息，下次方便登录，但在公共环境下请慎重选择，以免造成您的信息泄露。">
+											<input type="checkbox" class="styled"  name="remem">
+											记住登录信息
+										</label>
+									</div>
+
+									<div class="col-sm-6 text-right">
+										<a href="login_password_recover.html">忘记密码？</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<button type="submit" class="ladda-button ladda-button-demo btn bg-blue btn-block" data-style="zoom-in">登录 <i class="icon-arrow-right14 position-right"></i></button>
+							</div>
+
+							<div class="content-divider text-muted form-group"><span>没有账号？</span></div>
+							<a href="login_registration.html" class="btn btn-default btn-block content-group">注册</a>
+						</div>
+					</form>
+					<!-- /advanced login -->
+
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2017&nbsp;&nbsp;<a href="http://localhost:8090/blog/all">李明亮</a>&nbsp;&nbsp;|&nbsp;&nbsp;桂ICP备15007254号
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+<script>
+
+
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        
+                        http://www.springframework.org/schema/context  
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+                        http://www.springframework.org/schema/mvc  
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+     
+    <!-- 默认的注解映射的支持 -->  
+    <mvc:annotation-driven/>
+    
+	<!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
+ 	<context:component-scan base-package="net.limingliang.home.controller" /><!-- 首页-->
+ 	<context:component-scan base-package="net.limingliang.console.controller" /><!-- 首页-->
+	<context:component-scan base-package="net.limingliang.ioc.comment.controller" /><!-- 评论 -->
+	
+	<!-- 定义跳转的文件的前后缀 ，视图模式配置-->
+ 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 只定义前缀，跳转页面的后缀由controller控制，配合下面的静态映射可支持JSP和html的跳转-->
+ 		<property name="prefix" value="/WEB-INF/" />
+<!--    		<property name="suffix" value=".htm" /> -->
+ 	</bean> 
+	<!-- 静态资源映射 -->
+	<mvc:resources mapping="/home/**" location="/WEB-INF/home/" />
+	<mvc:resources mapping="/console/**" location="/WEB-INF/console/" />
+	
+    <!-- 当上面要访问的静态资源不包括在上面的配置中时，则根据此配置来访问 -->
+    <mvc:default-servlet-handler/>
+
+	
+	<!-- 初始化系统数据 -->
+	<bean id="trackManagerPostProcess" class="net.limingliang.system.TrackManagerPostProcessor"/>  
+	<bean id="initService" class="net.limingliang.system.InitService"/> 
+
+</beans>

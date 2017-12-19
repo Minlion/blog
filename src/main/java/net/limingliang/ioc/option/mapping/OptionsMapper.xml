@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.limingliang.ioc.option.dao.OptionDao" >
+  <resultMap id="BaseResultMap" type="net.limingliang.ioc.option.dto.Option" >
+    <id column="option_id" property="optionId" jdbcType="BIGINT" />
+    <result column="option_name" property="optionName" jdbcType="VARCHAR" />
+    <result column="option_value" property="optionValue" jdbcType="VARCHAR" />
+    <result column="autoload" property="autoload" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    option_id, option_name, option_value, autoload
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from blog_options
+    where option_id = #{optionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from blog_options
+    where option_id = #{optionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="net.limingliang.ioc.option.dto.Option" >
+    insert into blog_options (option_id, option_name, option_value, 
+      autoload)
+    values (#{optionId,jdbcType=BIGINT}, #{optionName,jdbcType=VARCHAR}, #{optionValue,jdbcType=VARCHAR}, 
+      #{autoload,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="net.limingliang.ioc.option.dto.Option" >
+    insert into blog_options
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="optionId != null" >
+        option_id,
+      </if>
+      <if test="optionName != null" >
+        option_name,
+      </if>
+      <if test="optionValue != null" >
+        option_value,
+      </if>
+      <if test="autoload != null" >
+        autoload,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="optionId != null" >
+        #{optionId,jdbcType=BIGINT},
+      </if>
+      <if test="optionName != null" >
+        #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue != null" >
+        #{optionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="autoload != null" >
+        #{autoload,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.limingliang.ioc.option.dto.Option" >
+    update blog_options
+    <set >
+      <if test="optionName != null" >
+        option_name = #{optionName,jdbcType=VARCHAR},
+      </if>
+      <if test="optionValue != null" >
+        option_value = #{optionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="autoload != null" >
+        autoload = #{autoload,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where option_id = #{optionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.limingliang.ioc.option.dto.Option" >
+    update blog_options
+    set option_name = #{optionName,jdbcType=VARCHAR},
+      option_value = #{optionValue,jdbcType=VARCHAR},
+      autoload = #{autoload,jdbcType=VARCHAR}
+    where option_id = #{optionId,jdbcType=BIGINT}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List"/>
+  	from blog_options where autoload='yes'
+  </select>
+</mapper>
